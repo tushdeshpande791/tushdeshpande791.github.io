@@ -4,31 +4,31 @@ nav{
     position: fixed;
     padding-right: 108px;
     margin-top: -1%;
-    margin-left: -1%;    
+    margin-left: -2%;    
     margin-right: -5%;
 }
 .navbar-brand {
     position: relative;
     float: left;
     display:block;
-    padding-left: 175px;
+    padding-left: 160px;
     padding-right: 70px;
     padding-bottom: 20px;
     padding-top: 5px;
-    color: rgb(244, 192, 128);
+    color: #AC9454;
     background-color: white;
     
 }
 ul {
     list-style-type: none;
-    margin-left: 950px;
+    margin-left: 700px;
     margin-top: 0%;
 }
 li {
     float: right;
 } 
 a:hover{
-    color: rgb(231, 171, 97);
+    color: #AC9454;
 }
 a {
     display: block;
@@ -40,7 +40,8 @@ a {
 .body1{
     background-image: url("images/image3.png");
     background-attachment: fixed;
-    background-size: auto;
+    background-size:auto;
+    width: min-content;
     margin-left: -7px;
 }
 /* .image1{
@@ -55,7 +56,7 @@ a {
 } */
 
 .active > a{
-    color: rgb(231, 171, 97);
+    color: #AC9454;
 }
 .image2{
 
@@ -65,44 +66,46 @@ a {
     text-align: center;
     position: absolute;
     padding-left: 35%;
-    padding-top: 25%;
-    font-size: 450%;
+    padding-top: 20%;
+    font-size: 400%;
     color: white;
-    font-family: 'Garamond'
+    font-family: "Poliphili Regular"
 }
 
 #word2{
-    padding-top: 25%;
+    padding-top: 20%;
     padding-left: 27%;
 }
 #word3{
     padding-left: 34%;
-    padding-top: 25%;
+    padding-top: 20%;
 }
 .div2{
     background-color: white;
     margin-top: 100%;
     margin-left: -2%;
-    padding-left: 200px;
+    padding-left: 100px;
     padding-right: 20px;
-    margin-right: -20%;
+    margin-right: -2%;
 }
 #flower1> .div2{
     float: left;
-    padding-left: 100px;
+    margin-left: 200px;
 }
 #image3{
-    padding-left: 100px;
-    padding-top: 1px;
-    padding-right: 250px;
+    margin-top: -100%;
+    padding-left: 470px;
+    padding-top: 50px;
+    margin-bottom: 17px;
+    padding-right: 200px;
 }
 .div3{
-    margin-top: -33.5%;
-    margin-left: 250px;
+    margin-top: -43%;
+    margin-left: 150px;
     color: white;
     font-size: 250%;
     position: absolute;
-    font-family: "Garamond";
+    font-family: "Poliphili";
 }
 #second{
     padding-top: 35%;
@@ -114,3 +117,30 @@ a {
     font-size: 65%;
     padding-left: 88px ;
 } 
+#button1{
+    margin-left: -5%;
+    margin-top: 20%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 80px;
+    padding-right: 85px;
+    background-color: #AC9454;
+    font-size: 45%;
+    color: white;
+    border-color: white;
+    border-style: solid;
+}
+.body2{
+    background-image: url("images/image2.png");
+    background-attachment: fixed;
+    background-size: auto;
+    width: 90%;
+    margin-top: 0%;
+    margin-left: 64px;
+    margin-right: 54px;
+}
+#flower2{
+    padding-top: 65px;
+    padding-left: 55%;
+    padding-bottom: 80px;
+}
