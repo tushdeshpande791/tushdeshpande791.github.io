@@ -2,6 +2,10 @@
     font-family: "Swiss 721";
     src: url('fonts/Swiss721BT-Medium.otf') format('opentype');
 }
+@font-face {
+    font-family: "XM Vahid";
+    src: url("fonts/XM Vahid.ttf") format('truetype');
+}
 body{
     margin: 0%;
 }
@@ -23,10 +27,9 @@ nav{
     padding-bottom: 20px;
     padding-top: 5px;
     color: #B3985A;
-
     background-color: white;
-    font-family: "Arial";
-    font-weight: 600;
+    font-family: "Swiss 721";
+    font-weight: 100;
 }
 ul {
     list-style-type: none;
@@ -36,6 +39,8 @@ ul {
 }
 li {
     float: right;
+    font-weight: 400;
+    font-family: 'XM Vahid';
 } 
 a:hover{
     color: #807149;
@@ -70,7 +75,7 @@ a {
 .overlay{
     position: absolute;
     padding-left: 37%;
-    padding-top: 336px;
+    padding-top: 308px;
     font-size: 350%; 
     color: white;
     justify-content: center;
@@ -87,12 +92,12 @@ a {
     padding-left: 340px;
 }
 #word3{
-    padding-left: 430px;
+    padding-left: 435px;
 
 }
 .div2{
     background-color: white;
-    margin-top: 100%;
+    margin-top: 878px;
     margin-left: -2%;
     padding-left: 105px;
     padding-right: 0px;
@@ -140,16 +145,16 @@ a {
     font-weight: 600;
     letter-spacing: 2px;
 } 
-#button1{
-    margin-left: -2%;
+.button1{
+    margin-left: 3%;
     margin-top: 13%;
     padding-top: 15px;
     padding-bottom: 15px;
-    padding-left: 90px;
-    padding-right: 105px;
+    padding-left: 82px;
+    padding-right: 85px;
     background-color: #AC9454;
     font-size: 45%;
-    font-family: "Arial";
+    font-family: "Swiss 721";
     color: white;
     border-color: white;
     border-style: solid;
@@ -159,10 +164,11 @@ a {
     text-align: center;
     margin-top: 0px;
     padding-top: 73px;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     margin-bottom: 15%;
 }
 #quo{
+    letter-spacing: 0px;
     font-size: 500%;
     margin-bottom: 0px;
 }
@@ -176,7 +182,7 @@ a {
 
 #JnJ{
     letter-spacing: 0px;
-    padding-top: 40px;
+    padding-top: 35px;
     font-family: 'Swiss 721';
     font-size: 100%;
     color: #AC9454;
@@ -185,7 +191,7 @@ a {
     background-image: url("images/image2.png");
     background-attachment: fixed;
     background-size: 87%;
-    background-position: center;
+    background-position: center -50px;
     background-repeat: no-repeat;
     margin-top: 0%;
     margin-left: 78px;
@@ -241,7 +247,7 @@ a {
     background-color: #AC9454;
     font-size: 45%;
     color: white;
-    font-family: "Arial";
+    font-family: "Swiss 721";
     font-weight: 500;
     border-color: white;
     border-style: solid;
@@ -263,10 +269,11 @@ a {
 }
 .footer-text{
     font-family: "Swiss 721";
+    letter-spacing: 0.5px;
 }
 #sixth{
     font-size: 35%;
-    padding-left: 120px;
+    padding-left: 100px;
     float: left;
 }
 #seventh{
@@ -292,7 +299,7 @@ a {
     float: left;
 }
 #button3{
-    margin-left: 8%;
+    margin-left: 12%;
     margin-top: 45px;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -301,8 +308,8 @@ a {
     background-color: #AC9454;
     font-size: 38%;
     color: white;
-    font-family: "Arial";
-    font-weight: 500;
+    font-family: "Swiss 721";
+    font-weight: 400;
     border-color: white;
     border-style: solid;
     border-width: 1px;
