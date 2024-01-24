@@ -202,11 +202,11 @@ a {
 .body2{
     background-image: url("images/image2.png");
     background-attachment: fixed;
-    background-size: 87%;
-    background-position: center -50px;
+    background-size: 1079px ;
+    background-position: 80px -40px;
     background-repeat: no-repeat;
     margin-top: -20px;
-    margin-left: 78px;
+    margin-left: 80px;
     margin-right: 80px;
 
 }
@@ -272,7 +272,7 @@ a {
     padding-top: 50px;
     padding-bottom: 60%;
     height: fit-content;
-    margin-left: 78px;
+    margin-left: 80px;
     margin-right: 170px;
     width: 1081px;
     padding-bottom: 70px;
