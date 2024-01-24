@@ -163,15 +163,26 @@ a {
 .div4{
     text-align: center;
     margin-top: 0px;
-    padding-top: 73px;
+    padding-top: 60px;
     letter-spacing: 2px;
     margin-bottom: 15%;
 }
 #quo{
     letter-spacing: 0px;
-    font-size: 500%;
+    font-size: 460%;
     margin-bottom: 0px;
+    font-weight: bold;
+
 }
+/*.thin-tails {
+    text-decoration: underline;
+    text-decoration-thickness: 0.4px; /* Adjust thickness as needed */
+    /*text-decoration-offset: 0.3em; /* Adjust tail position */
+  
+    /* Ensure alignment for bold quotes (if applicable) */
+    /*font-weight: bold;
+    text-decoration-skip-ink: none;
+}*/
 .test1{
     font-family: 'Benne';
     margin-top: 0px;
@@ -193,7 +204,7 @@ a {
     background-size: 87%;
     background-position: center -50px;
     background-repeat: no-repeat;
-    margin-top: 0%;
+    margin-top: -20px;
     margin-left: 78px;
     margin-right: 80px;
 
