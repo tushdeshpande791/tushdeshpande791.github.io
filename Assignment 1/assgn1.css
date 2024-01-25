@@ -61,16 +61,6 @@ a {
     background-size: auto;
     background-repeat: no-repeat;
 }
-/* .image1{
-    background-size:cover;
-    background-attachment: fixed;
-    width: 105%;
-    margin-left: -1%;
-    margin-right: -5%;
-    float: left;
-    position:static;
-    height: 75%;
-} */
 
 .active > a{
     color: #807149;
@@ -177,15 +167,6 @@ a {
     font-weight: bold;
 
 }
-/*.thin-tails {
-    text-decoration: underline;
-    text-decoration-thickness: 0.4px; /* Adjust thickness as needed */
-    /*text-decoration-offset: 0.3em; /* Adjust tail position */
-  
-    /* Ensure alignment for bold quotes (if applicable) */
-    /*font-weight: bold;
-    text-decoration-skip-ink: none;
-}*/
 .test1{
     font-family: 'Benne';
     margin-top: 0px;
@@ -296,7 +277,6 @@ a {
     padding-top: 0px;
     padding-left: 30px;
     border-left: 1px solid white;
-    /*border-width: 1px;*/
     height: 50px;
     float: left;
 }
@@ -308,7 +288,6 @@ a {
     padding-bottom: 9px;
     padding-left: 20px;
     border-left: 1px solid white;
-    /*border-width: 1px;*/
     height: 40px;
     float: left;
 }
