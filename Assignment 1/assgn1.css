@@ -15,6 +15,7 @@ nav{
     float: right;
     position: fixed;
     width: 1239px;
+    height: 90px;
     margin: 0%;
     z-index: 50;
     align-items: center;
@@ -25,8 +26,8 @@ nav{
     display:block;
     padding-left: 160px;
     padding-right: 70px;
-    padding-bottom: 20px;
-    padding-top: 5px;
+    padding-bottom: 10px;
+    padding-top: 8px;
     color: #B3985A;
     background-color: white;
     font-family: "Swiss 721";
@@ -40,6 +41,7 @@ ul {
 }
 li {
     float: right;
+    font-size: 100%;
     font-weight: 400;
     font-family: 'XM Vahid';
 } 
@@ -114,7 +116,7 @@ a {
     padding-left: 480px;
     width: 600px;
     height: 580px;
-    margin-bottom: 17px;
+    margin-bottom: 18px;
     padding-right: 0px;
 }
 .div3{
