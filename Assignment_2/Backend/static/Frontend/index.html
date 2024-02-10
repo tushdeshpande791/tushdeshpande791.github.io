@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+    <html lang="en">
+  <head>
+    <link rel="stylesheet" href="static/Frontend/index.css" />
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <script src="static/Frontend/index.js"></script>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+  <script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
+  <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/stock/modules/accessibility.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  </head>
+  <body>
+    <p id="heading">Stock Search</p>
+    <form onsubmit="call_apis(); return false;">
+      <div class="search-bar">
+        <input id="search" type="text" placeholder="Enter Stock Ticker Symbol" required>
+        <button type="submit" refresh="False" id="submit-image">
+        <img  id="search-img" src="static/Frontend/img/search-solid.svg">
+        </button>
+        <img type="submit" id="close-img" src="static/Frontend/img/times-solid.svg" onclick="remove()"/>
+        <hr id="vertical_bar">
+      </div>
+    </form>
+    <div id="display">
+      <div class="Content" id="Not_found_tab">
+        <p id="not_found_text">Error : No record has been found, please enter a valid symbol</p>
+      </div>
+      <div class="Content" id="Company_tab">
+        <div id="navbar">
+          <nav>
+            <div class="navbar-brand">
+              <div id="myNavbar">   
+                  <!-- <li class="active"><a href="#" onclick="company_tab()">Company</a></li>
+                  <li><a href="#" onclick="stock_summary_tab()">Stock Summary</a></li>
+                  <li><a href="#" onclick="charts_display()">Charts</a></li>
+                  <li><a href="#" onclick="latest_news_tab()">Latest News</a></li> -->
+                <button class="nav active" onclick="company_tab()">Company</button>
+                <button class="nav" onclick="stock_summary_tab()">Stock Summary</button>
+                <button class="nav" onclick="charts_display()">Charts</button>
+                <button class="nav" onclick="latest_news_display()">Latest News</button>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div class="outerdiv">
+          <div class="company">
+            <img id="logo-image" src="">
+            <!-- <hr class="horizontal-bar"> -->
+            <table class="info_tables">
+              <div  class="company-line">
+              <!-- <p><b>Company Name </b></p> -->
+              <tr class="table-row">
+                <td class="table-left, firsttablerow" id="company-left">Company Name</td>
+                <td class="table-right, firsttablerow" id="company-name"></td>
+              </tr>
+              <!-- <p class="comp" id="company-name"></p> -->
+              </div>
+              <!-- <hr class="horizontal-bar"> -->
+              <div  class="company-line">
+              <tr>
+                <td class="table-left">Stock Ticker Symbol</td>
+                <td class="table-right" id="company-symbol"></td>
+              </tr>
+              <!-- <p><b>Stock Ticker Symbol </b></p> -->
+              <!-- <p class="comp" id="company-symbol"></p> -->
+              </div>
+              <!-- <hr  class="horizontal-bar"> -->
+              <div  class="company-line">
+              <tr>
+                <td class="table-left">Stock Exchange Code</td>
+                <td class="table-right" id="company-code"></td>
+              </tr>
+              <!-- <p class="company-c" ><b>Stock Exchange Code </b></p> -->
+              <!-- <p class="comp" id="company-code"></p> -->
+              </div>
+              <!-- <hr  class="horizontal-bar"> -->
+              <div  class="company-line">
+                <tr>
+                  <td class="table-left">Company Start Date</td>
+                  <td class="table-right" id="company-date"></td>
+                </tr>
+              <!-- <p class="company-c" ><b>Company Start Date </b></p> -->
+              <!-- <p class="comp" id="company-date"></p> -->
+              </div>
+              <!-- <hr  class="horizontal-bar"> -->
+              <div  class="company-line">
+              <tr>
+                <td class="table-left">Category</td>
+                <td class="table-right" id="company-cat"></td>
+              </tr>
+              <!-- <p class="company-c" ><b>Category </b></p> -->
+              <!-- <p class="comp" id="company-cat"></p> -->
+              </div>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="Content" id="Stock_Summary_tab">
+        <div id="navbar">
+          <nav>
+            <div class="navbar-brand">
+              <div id="myNavbar">    
+                <button class="nav" onclick="company_tab()">Company</button>
+                <button class="nav active" onclick="stock_summary_tab()">Stock Summary</button>
+                <button class="nav" onclick="charts_display()">Charts</button>
+                <button class="nav" onclick="latest_news_display()">Latest News</button>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div class="outerdiv2">
+        <div class="company" id="stock">
+          <!-- <hr class="horizontal-bar"> -->
+          <table class="table2">
+          <div  class="company-line">
+            <tr>
+              <td class="table2-left firsttablerow" id="stock-left"><b>Stock Ticker Symbol</b></td>
+              <td class="table2-right firsttablerow" id="symbol"></td>
+            </tr>
+          <!-- <p><b>Stock Ticker Symbol </b></p> -->
+          <!-- <p class="comp" id="symbol"></p> -->
+          </div>
+          <!-- <hr class="horizontal-bar"> -->
+          <div  class="company-line">
+            <tr>
+              <td class="table2-left"><b>Trading Day</b></td>
+              <td class="table2-right" id="trading-day"></td>
+            </tr>
+          <!-- <p><b>Trading Day </b></p> -->
+          <!-- <p class="comp" id="trading-day"></p> -->
+          </div>
+          <!-- <hr  class="horizontal-bar"> -->
+          <div  class="company-line">
+            <tr>
+              <td class="table2-left"><b>Previous Closing Price</b></td>
+              <td class="table2-right" id="closing price"></td>
+            </tr>
+          <!-- <p class="company-c" ><b>Previous Closing price</b></p> -->
+          <!-- <p class="comp" id="closing price"></p> -->
+          </div>
+          <!-- <hr  class="horizontal-bar"> -->
+          <div  class="company-line">
+            <tr>
+              <td class="table2-left"><b>Opening Price</b></td>
+              <td class="table2-right"id="opening-price"></td>
+            </tr>
+          <!-- <p class="company-c" ><b>Opening Price </b></p> -->
+          <!-- <p class="comp" id="opening-price"></p> -->
+          </div>
+          <!-- <hr  class="horizontal-bar"> -->
+          <div  class="company-line">
+            <tr>
+              <td class="table2-left"><b>High Price</b></td>
+              <td class="table2-right" id="high-price"></td>
+            </tr>
+          <!-- <p class="company-c" ><b>High Price </b></p> -->
+          <!-- <p class="comp" id="high-price"></p> -->
+          </div>
+          <!-- <hr  class="horizontal-bar"> -->
+          <div  class="company-line">
+            <tr>
+              <td class="table2-left"><b>Low Price</b></td>
+              <td class="table2-right" id="low-price"></td>
+            </tr>
+          <!-- <p class="company-c" ><b>Low Price </b></p> -->
+          <!-- <p class="comp" id="low-price"></p> -->
+          </div>
+          <!-- <hr  class="horizontal-bar"> -->
+          <div  class="company-line">
+            <tr>
+              <td class="table2-left"><b>Change</b></td>
+              <td class="table2-right"><p id="change"></p><img class="arrow" id="arrow-change" src=""></td>
+              <!-- <td><img class="arrow" id="arrow-change" src=""></td> -->
+            </tr>
+          <!-- <p class="company-c" ><b>Change</b></p> -->
+          <!-- <p class="comp" id="change"></p> -->
+          <!-- <img class="arrow" id="arrow-change" src=""> -->
+          </div>
+          <!-- <hr  class="horizontal-bar"> -->
+          <div class="company-line">
+            <tr>
+              <td class="table2-left"><b>Change Percent</b></td>
+              <td class="table2-right"><p id="change-percent"></p><img class="arrow" id="arrow-percent" src=""></td>
+              <!-- <td><img class="arrow" id="arrow-percent" src=""></td> -->
+            </tr>
+          <!-- <p class="company-c" ><b>Change Percent</b></p> -->
+          <!-- <p class="comp" id="change-percent"></p> -->
+          <!-- <img class="arrow" id="arrow-percent" src=""> -->
+          </div>
+          <!-- <hr  class="horizontal-bar"> -->
+        </table>
+          <div  id="recomm" class="company-line">
+            <div class="left-text">
+            <p class="strongselltext" ><b>Strong</b></p>
+            <!-- <br> -->
+            <p class="strongselltext"><b>Sell</b></p>
+            </div>
+            <p id="strongsell"></p> 
+            <p id="sell"></p>
+            <p id="hold"></p> 
+            <p id="buy"></p> 
+            <p id="strongbuy"></p>
+            <div class="right-text">
+            <p class="strongbuytext"><b>Strong</b></p>
+            <!-- <br> -->
+            <p class="strongbuytext" id="buytext"><b>Buy</b></p>
+            </div>
+            </div>
+          <div id="textrecomm">
+            <p>Recommendation Trends</p>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="Content" id="Charts_tab">
+        <div id="navbar">
+          <nav>
+            <div class="navbar-brand">
+              <div id="myNavbar">
+                <button class="nav" onclick="company_tab()">Company</button>
+                <button class="nav" onclick="stock_summary_tab()">Stock Summary</button>
+                <button class="nav active" onclick="charts_display()">Charts</button>
+                <button class="nav" onclick="latest_news_display()">Latest News</button>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div class="outerdiv">
+          <div id="chart_display">
+          </div>
+          <a id="subtitle" href="https://polygon.io/" target="_blank">Source: Polygon.io</a>
+
+
+        </div>
+      </div>
+      <div class="Content" id="Latest_news_tab">
+        <div id="navbar">
+          <nav>
+            <div class="navbar-brand">
+              <div id="myNavbar">
+                <button class="nav" onclick="company_tab()">Company</button>
+                <button class="nav" onclick="stock_summary_tab()">Stock Summary</button>
+                <button class="nav" onclick="charts_display()">Charts</button>
+                <button class="nav active" onclick="latest_news_display()">Latest News</button>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div class="outerdiv4">
+          <div class="company" id="latest">
+            <div  class="company-line" id="firstnews">
+              <img class="news-image" id="n_image1" src="">
+              <div class="content-news">
+                <p class="headlines" id="headline1"></p>
+                <p id="date1"></p>
+                <a id="link1" href="" target="_blank">See Original Post</a> 
+              </div>
+            </div>
+            <div  class="company-line" id="secondnews">
+              <img class="news-image" id="n_image2" src="">
+              <div class="content-news">
+                <p class="headlines" id="headline2"></p>
+                <p id="date2"></p>
+                <a id="link2" href="" target="_blank">See Original Post</a> 
+              </div>
+            </div>
+            <div  class="company-line" id="thirdnews">
+              <img class="news-image" id="n_image3" src="">
+              <div class="content-news">
+                <p class="headlines" id="headline3"></p>
+                <p id="date3"></p>
+                <a id="link3" href="" target="_blank">See Original Post</a> 
+              </div>
+            </div>
+            <div  class="company-line" id="fourthnews">
+              <img class="news-image" id="n_image4" src="">
+              <div class="content-news">
+                <p class="headlines" id="headline4"></p>
+                <p id="date4"></p>
+                <a id="link4" href="" target="_blank">See Original Post</a> 
+              </div>
+            </div>
+            <div  class="company-line" id="fifthnews">
+              <img class="news-image" id="n_image5" src="">
+              <div class="content-news">
+                <p class="headlines" id="headline5"></p>
+                <p id="date5"></p>
+                <a id="link5" href="" target="_blank">See Original Post</a> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="Content" id="Latest_news_tab">
+        
+      </div>
+    </div>
+    
+  </body>
+
+</html>
