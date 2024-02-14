@@ -6,31 +6,24 @@
     font-family: "Roboto Regular";
     src: url("fonts/Roboto-Regular.ttf") format('truetype');
 }
+@font-face {
+    font-family: "Open Sans Regular";
+    src: url("fonts/OpenSans-Light.ttf") format('truetype');
+}
 body{
     margin:0px;
     background-image: url("img/back.svg");
     background-repeat: no-repeat;
-    background-position: -150px 0px;
+    background-position: -160px 0px;
     width:100vw;
-    width: 1550px;
-    /* background-size: cover; */
-    /* display: flex; */
-    /* justify-content: center; */
-    /* flex-direction: column; */
-    /* min-width: 1496px; */
-
-    background-size:2000px 335px;
-    /* width: fit-content; */
-    /* display: block; */
+    overflow-x: hidden;
+    background-size: 130.2vw 320px;
 }
-/* #Latest_news_tab{
-    width: 996px;
-} */
 #heading{
     text-align: center;
     font-size: 190%;
     color: #222734;
-    font-family: Open Sans;
+    font-family: "Open Sans";
 }
 .search-bar{
     display: flex;
@@ -99,21 +92,12 @@ body{
 #display{
     display:none;
     padding-top: 20px;
-    /* display: flex; */
-    /* align-items: center; */
-    /* font-weight: 400; */
 }
-/* nav{
-    background-color: #696A6C;
-    width: 1239px;
-    height: 90px;
-    margin: 0%;
-    z-index: 50;
-    align-items: center;
-} */
 .Content{
-    margin-top: 220px;
+    margin-top: 157px;
     margin-left: 0px;
+    display: flex;
+    justify-content: center;
 }
 #Not_found_tab{
     display: flex;
@@ -123,11 +107,16 @@ body{
     background-color: #EBEBEB;
     border-radius:  0.8rem;
     padding-top: 13px;
+    margin-top: 70px;
     padding-bottom:13px;
-    padding-left: 105px;
-    padding-right: 105px;
-    font-size: 130%;
-    margin-left: 108px;
+    padding-left: 95px;
+    padding-right: 95px;
+    font-size: 115%;
+    margin-left: 60px;
+    font-family: "Open Sans Regular";
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: rgb(25, 24, 24);
 }
 .outerdiv{
     display: flex;
@@ -158,35 +147,28 @@ ul {
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 19px;
-    margin-left: -4px;
     height: 56.4px;
     text-decoration: none;
     background-color: #FAFAFA;
     font-family: "Roboto Light";
 }
+#parent{
+    display: flex;
+    justify-content: center;
+}
 #navbar{
-    margin-left: 316px;
-    margin-top: -51px;
     background-color: #FAFAFA;
     height: 56px; 
-    margin-right: 250px;
+    width: 64.89vw;
+    display: flex;
 }
-nav{
-    padding-top: 0px;
-    width: 996px;
-    background-color: #FAFAFA
-}
-/* nav p {
-    color: black;
-    padding: 20px;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 19px;
-    margin-left: -4px;
-    height: 56.4px;
-    text-decoration: none;
+#myNavbar{
     background-color: #FAFAFA;
-  } */
+    height: 56px; 
+    display: flex;
+    justify-content: center;
+    
+}
 .company{
     padding-top: 35px;
     text-align: center;
@@ -199,7 +181,6 @@ nav{
     width:100px;
     padding-bottom: 10px;
     align-self: center;
-    padding-left: 35px;
 }
 .company hr{
     color: #faf4f4;
@@ -208,41 +189,27 @@ nav{
 .active{
     background-color: #CECECE;
 }
-nav .nav:hover{
+#navbar .nav:hover{
     background-color: #DCDBDB;
 }
 .company p{
     display: inline;
 }
-/* .info_tables{
-    border: 2px solid;
-} */
 table{
     border-spacing: 0;
     border-width: 0;
     padding: 0;
     border-width: 0;
-    margin-left: 45px;
-
 }
 .table2{
     border-spacing: 0;
     border-width: 0;
     padding: 0;
     border-width: 0;
-    margin-left: 54px;
-}
-tr{
-    margin-left: 40px;  
-
 }
 
 td{
-    /* border-bottom: #CECECE 1px solid; */
-    border-bottom: #e7e4e4 1px solid;
-
-    
-    /* border-color: #CECECE; */
+    border-bottom: #e7e4e4 1px solid;    
 }
 .table-left{
     text-align: right;
@@ -257,7 +224,6 @@ td{
     padding-left: 7px;
     font-family: "Roboto Regular";
     font-weight: bold;
-    /* font-size: 105%; */
 }
 #company-left{
     text-align: right;
@@ -273,10 +239,6 @@ td{
     font-family: "Roboto Regular";
     font-weight: bold;
 }
-/* table tr .company-line{
-    border-top:  black 1px solid;
-    border-color:#CECECE
-} */
 #symbol{
     text-align: left;
     font-family: "Roboto Light";
@@ -319,16 +281,12 @@ td{
     padding-left: 5px;
 }
 .strongselltext{
-    /* text-align: center; */
     color: #d12e4c;
     font-family: "Roboto Light";
     font-size: 80%;
     letter-spacing: 0.5px;
     margin: 0px;
 }
-/* #selltext{
-    margin-top: -100px;
-} */
 #strongsell{
     color: white;
     background-color: red;
@@ -341,7 +299,6 @@ td{
     margin-left: 10px;
     font-size: 105%;
     font-family: "Roboto Regular";
-    /* font-weight: 200; */
 }
 
 #sell{
@@ -399,7 +356,6 @@ td{
 
 .strongbuytext{
     color: #4ace85;
-    /* color: #9FDCA5; */
     font-family: "Roboto Light";
     font-size: 80%;
     letter-spacing: 0.5px;
@@ -412,25 +368,18 @@ td{
     padding-top: 20px;
     font-size: 120%;
     display: flex;
-    /* padding-right: 40px; */
-    padding-left: 95px;
+    padding-left: 46px;
 }
 #textrecomm{
-    /* padding-top: 30px; */
-    margin-left: 47px;
     margin-top: -20px;
     font-family: "Roboto Light";
     font-size: 115%;
 }
 .news-image{
-    /* margin-left: -930px; */
     height: 100px;
     width: 100px;
     padding: 15px
 }
-/* #latest{
-    align-items: left;
-} */
 .outerdiv4{
     display: flex;
     justify-content: center;
@@ -441,8 +390,7 @@ td{
 .outerdiv4 .company .company-line{
     background-color: #FAFAFA;
     margin-top: 30px;
-    width: 1001px;
-    margin-left: 75px;
+    width: 64.89vw;
     margin-right: 0px;
     display: flex;
     justify-content: left;
@@ -450,8 +398,7 @@ td{
 #firstnews{
     background-color: #FAFAFA;
     margin-top: 20px;
-    width: 1001px;
-    margin-left: 75x;
+    width: 64.89vw;
     margin-right: 0px;
     display: flex;
     justify-content: left;
@@ -472,23 +419,19 @@ td{
 }
 .content-news p{
     margin: 0px;
-    /* font-family: "Roboto Light"; */
 }
 #chart_display{
-    width: 996px;
+    width: 64.89vw;
     height: 550px;
     padding-top: 20px;
     text-align: center;
-    margin-left: 65px;
 }
 #subtitle{
     z-index: 50;
     position: absolute;
     padding-top: 56px;
-    margin-left: 65px;
     font-family: "Helvetica";
     font-size: 80%;
-    /* color: #533f6e; */
 }
 .headlines{
     font-family: "Roboto Regular";
