@@ -15,9 +15,11 @@ body{
     background-image: url("img/back.svg");
     background-repeat: no-repeat;
     background-position: -160px 0px;
-    width:100vw;
-    overflow-x: hidden;
-    background-size: 130.2vw 320px;
+    width: 1550px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-size: 2000px 320px;
 }
 #heading{
     text-align: center;
@@ -159,15 +161,16 @@ ul {
 #navbar{
     background-color: #FAFAFA;
     height: 56px; 
-    width: 64.89vw;
+    width: 996px;
     display: flex;
 }
 #myNavbar{
+    margin-top: -51px;
     background-color: #FAFAFA;
     height: 56px; 
+    width: 996px;
     display: flex;
-    justify-content: center;
-    
+    justify-content: center;    
 }
 .company{
     padding-top: 35px;
@@ -206,8 +209,8 @@ table{
     border-width: 0;
     padding: 0;
     border-width: 0;
+    margin-left: 35px;
 }
-
 td{
     border-bottom: #e7e4e4 1px solid;    
 }
@@ -368,7 +371,8 @@ td{
     padding-top: 20px;
     font-size: 120%;
     display: flex;
-    padding-left: 46px;
+    padding-right: 40px;
+    padding-left: 80px;
 }
 #textrecomm{
     margin-top: -20px;
@@ -390,7 +394,7 @@ td{
 .outerdiv4 .company .company-line{
     background-color: #FAFAFA;
     margin-top: 30px;
-    width: 64.89vw;
+    width: 996px;
     margin-right: 0px;
     display: flex;
     justify-content: left;
@@ -398,7 +402,7 @@ td{
 #firstnews{
     background-color: #FAFAFA;
     margin-top: 20px;
-    width: 64.89vw;
+    width: 996px;
     margin-right: 0px;
     display: flex;
     justify-content: left;
@@ -421,7 +425,7 @@ td{
     margin: 0px;
 }
 #chart_display{
-    width: 64.89vw;
+    width: 996px;
     height: 550px;
     padding-top: 20px;
     text-align: center;
