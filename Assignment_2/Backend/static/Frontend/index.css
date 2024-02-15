@@ -15,7 +15,7 @@ body{
     background-image: url("img/back.svg");
     background-repeat: no-repeat;
     background-position: -160px 0px;
-    width: 1550px;
+    width: 1518px;
     display: flex;
     justify-content: center;
     flex-direction: column;
