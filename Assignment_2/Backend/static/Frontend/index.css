@@ -20,6 +20,7 @@ body{
     justify-content: center;
     flex-direction: column;
     background-size: 2000px 320px;
+    overflow-x: hidden;
 }
 #heading{
     text-align: center;
