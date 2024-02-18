@@ -407,7 +407,6 @@ td{
     margin-right: 0px;
     display: flex;
     justify-content: left;
-
 }
 .content-news{
     display: flex;
@@ -417,6 +416,9 @@ td{
     font-family: "Roboto Light";
     font-size: 108%;
     
+}
+.links{
+    width:129.55px
 }
 .content-news b p{
     margin: 0px;

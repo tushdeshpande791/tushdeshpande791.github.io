@@ -360,7 +360,6 @@ function datareceiveapicalls(){
 function call_apis(){
     var symbol=document.getElementById("search").value;
     symbol=symbol.toUpperCase()
-    console.log(symbol)
     xhr.open('GET', '/apicalls?symbol=' + symbol,true)
     xhr.send();
     xhr.onreadystatechange=datareceiveapicalls;
