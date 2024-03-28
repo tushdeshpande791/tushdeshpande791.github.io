@@ -1,0 +1,37 @@
+<div *ngIf="isLoadedResult" class="insights">
+    <div class="container row -center">
+    <div class="col-lg-6 offset-3 mx-auto">
+    <p id="heading" style="font-family: Open Sans semibold;"  class="fs-5 mt-3">Insider Sentiments</p>
+    <table class="table mt-3">
+        <thead>
+            <tr scope="row">
+                <td class="bold" style="font-family: Open Sans bold;">{{this.s.name}}</td>
+                <td class="bold" style="font-family: Open Sans bold;">MSPR</td>
+                <td class="bold" style="font-family: Noto Sans bold;">Change</td>
+            </tr>
+        </thead>
+        <tbody>
+        <tr scope="row">
+            <td class="bold" style="font-family: Open Sans bold;">Total</td> 
+            <td style="font-family: Open Sans Regular;">{{mspr_sum}}</td> 
+            <td style="font-family: Open Sans Regular;">{{change_sum}}</td> 
+        </tr>
+        <tr scope="row">
+            <td class="bold" style="font-family: Open Sans bold;">Positive</td> 
+            <td style="font-family: Open Sans Regular;">{{mspr_positive_sum}}</td> 
+            <td style="font-family: Open Sans Regular;">{{change_positive_sum}}</td> 
+        </tr>
+        <tr scope="row">
+            <td class="bold" style="font-family: Open Sans bold;"   >Negative</td> 
+            <td style="font-family: Open Sans Regular;">{{mspr_negative_sum}}</td> 
+            <td style="font-family: Open Sans Regular;">{{change_negative_sum}}</td> 
+        </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>      
+    <div class="charts container row">
+        <span class="col-lg-6" [chart]="column_chart"></span>
+        <span class="col-lg-6" [chart]="spline_chart "></span>
+    </div>
+</div>

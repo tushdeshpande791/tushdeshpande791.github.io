@@ -1,0 +1,246 @@
+.searchform{
+    display: flex;
+    justify-content: center;
+}
+mat-tab-group .comp-quote p{
+    margin: 0%; 
+}
+
+#heading{
+    text-align: center;
+    font-size: 200%;
+}
+.search-bar{
+    height: 2rem !important;
+    background: white !important;
+    border: 2.5px solid darkblue !important;
+    border-radius: 2rem !important;
+}
+#search{
+    display: block;
+    border-radius: 2rem !important;
+    outline: none;
+    border-style: none;
+}
+#search:focus{
+    outline: none !important; 
+}
+.search-bar:focus{
+    border: 2.5px solid darkblue !important;
+    border-radius: 2rem !important;  
+    outline: none !important; 
+}
+#submit-image{
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+#search-img{
+    padding-right: 0px !important;
+    cursor: pointer !important;
+    height: 13px !important;
+    width: 13px !important;
+    color: darkblue !important;
+}
+::placeholder{
+    color: #2d2d2e !important;
+    opacity: 0.8 !important;
+    font-size: 80% !important;
+    font-family: Open Sans Regular;
+}
+#close-image{
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+#close-img{
+    color: darkblue !important;
+    height: 26px !important;
+    width: 22px !important;
+}
+div.mat-mdc-autocomplete-panel.mat-mdc-autocomplete-visible{
+    margin-top: -8px;
+    margin-left: 0px;
+}
+.mat-mdc-option .mdc-list-item__primary-text{
+    font-size: 85% !important;
+}
+div.mat-mdc-progress-spinner .mdc-circular-progress__determinate-circle, .mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic{
+    stroke: #505CA8 !important;
+}
+.quantityrow{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.form-control{
+    margin-left: 10px;
+    height: 30px;
+    margin-right: 13px;  
+}
+.btn-success{
+    align-self: center;
+}
+.btn-success:focus{
+    --bs-btn-focus-shadow-rgb: 60,153,110 !important   
+}
+.btn-danger{
+    align-self: center;
+    margin-left: 10px;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.modal-body{
+    padding: 10px 20px !important;
+}
+.modal-footer{  
+    padding: 10px !important;
+}
+.modal-footer .totalp{
+    position: absolute;
+    left: 0;
+    padding: 10px;
+}
+.modal-footer .totalp  p{
+    margin: 0;
+}
+#logo-image{
+    max-height:85px; 
+    min-width: 50px;
+    min-height: 50px;
+}
+.company-dets a{
+    text-decoration: underline;
+    color: #4287C4;
+}
+.spinner .show{
+    opacity:1;
+    font-size: 80%;
+    text-align: center;
+    color:black;
+    background-color: #FCD4DC;
+	border-color: #d48196;
+}
+.closealerts #successwatchlist{
+    opacity:1;
+    margin-top: 20px;
+    margin-bottom: 2px;
+    font-size: 80%;
+    text-align: center;
+    color:black;
+    background-color: #D4ECDF;
+	border-color:   #B4CCC4;   
+}
+.closealerts #successwatchlist1{
+    opacity:1;
+    margin-top: 20px;
+    margin-bottom: 2px;
+    font-size: 80%;
+    text-align: center;
+    color:black;
+    background-color: #FCD4DC;
+	border-color: #d48196;   
+}
+#upper-part{
+    display: flex;
+    justify-content: space-evenly;
+}
+#comp-details{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+.comp-price{
+    text-align: center;
+}
+.firstline{
+    display: flex;
+    justify-content: center;
+}
+#open{
+    text-align: center;
+}
+#closed{
+    text-align: center;
+}   
+.firstline #starunfill{
+    margin-left:5px;
+    height: 30px;
+    margin-top: -8px;
+    padding: 5px;
+    width: 30px;
+    animation-play-state: paused;
+    padding: 5px;
+    cursor: pointer;
+}
+.firstline #starunfill:active{
+    animation-play-state: paused;
+    border: black 1px solid;
+    border-radius: 0.5rem;
+}
+.firstline #starfill{
+    margin-left: 5px;
+    color: #FAD50D;
+    height: 30px;
+    margin-top: -8px;
+    padding: 5px;
+    width: 30px;
+    animation-play-state: paused;
+    padding: 5px;
+    cursor: pointer;
+}
+.firstline #starfill:active{
+    animation-play-state: paused;
+    border: black 1px solid;
+    border-radius: 0.5rem;
+}
+#upper-part .market{
+    margin-top: 40px;
+}
+#peer{
+    color: #4287C4;
+    cursor: pointer;
+    text-decoration: underline;
+}
+#closed{
+    color: red;
+}
+#open{
+    color: green;
+}
+.market{
+    font-size: 80%;
+}
+.firstrow{
+    font-size: 200%;
+    size: 200%;
+}
+.secondrow{
+    font-size: 150%;
+}
+#name{
+    opacity: 0.8;
+}
+.thirdrow{
+    font-size: 80%;
+}
+.comp-quote{
+    margin-top: 20px;
+    text-align: center;
+}
+.company-dets{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+#head{
+    margin-top: 50px;
+    font-size: 120%;
+    text-decoration: underline;
+    font-weight: lighter;
+}

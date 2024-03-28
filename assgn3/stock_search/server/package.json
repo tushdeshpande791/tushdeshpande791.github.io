@@ -1,0 +1,22 @@
+{
+  "name": "assignment_3",
+  "version": "1.0.0",
+  "description": "csci-571 assignment 3",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "Hello.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^3.0.1",
+    "mongoose": "^8.2.0",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "webpack": "^5.90.3",
+    "webpack-dev-middleware": "^7.0.0",
+    "webpack-hot-middleware": "^2.26.1"
+  }
+}

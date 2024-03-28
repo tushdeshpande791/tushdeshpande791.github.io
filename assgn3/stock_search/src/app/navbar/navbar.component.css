@@ -1,0 +1,35 @@
+.navbar-custom{
+    background-color: darkblue;
+}
+.navbar-brand{
+    color: white;
+}
+nav li a{
+    background-color: darkblue;
+    color: #7e84c5 !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 85%;
+}
+.navbar-nav .nav-link .active{
+  background-color: darkblue;
+  color: #7e84c5 !important;
+  padding-left: 11px;
+  padding-right: 11px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border: 1px solid white;
+  border-radius: 0.7rem;
+}
+nav li a:hover{
+    background-color: darkblue;
+    color: #d7d3d3 !important;
+}
+.active{
+    background-color: darkblue;
+    color: #7e84c5 !important;
+    border: 1px solid white;
+    border-radius: 0.7rem;
+} 

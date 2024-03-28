@@ -1,0 +1,172 @@
+@keyframes modal-fade {
+    from {
+      top: -50px;
+      opacity: 0;
+    }
+  
+    to {
+      top: 0;
+      opacity: 1;
+    }
+}
+@keyframes modal-fade-out {
+    from {
+        top: 0px;
+        opacity: 1;
+      }
+    to {
+      top: -50px;
+      opacity: 0;
+    }
+}
+.alerts{
+    display: flex;
+    justify-content: center;
+}
+.container #successwatchlist{
+    opacity:1;
+    font-size: 80%;
+    text-align: center;
+    color:black;
+    background-color: #D4ECDF;
+	border-color:   #B4CCC4;   
+}
+.container .show{
+    z-index: 1000 !important;
+}
+.container #successwatchlist1{
+    opacity:1;
+    font-size: 80%;
+    text-align: center;
+    color:black;
+    background-color: #FCD4DC;
+	border-color: #d48196;   
+}
+.modal-backdrop.fade{
+    opacity: 0.5 !important;
+}
+.modal-header{
+    padding: 0px;
+}
+.modal.fade .modal-dialog{
+    animation-duration: 0.3s; 
+    animation-name: 'modal-fade-out'; 
+}
+.modal.show .modal-dialog{
+    animation-duration: 0.3s !important;
+    animation-name: 'modal-fade' !important;
+}
+.modal-content .close{
+    animation-duration: 0.3s;
+    animation-name: 'modal-fade-out';
+}
+.modal-header .modal-title{
+    font-size: 200%;
+}
+.modal-header .modal-title small{
+    font-size: 60%
+}
+.modal-content p{
+    opacity: 0.8;
+}
+.modal-content .modal-header .btn-close::before {
+    content: "";
+    position: absolute;
+    top: 69%;
+    left: 36%;
+    width: 25%;
+    height: 1px;
+    background-color: rgb(128, 0, 87);
+  }
+.modal-content .modal-header .btn-close{
+    text-decoration: underline !important;
+    filter: invert(18%) sepia(67%) saturate(3789%) hue-rotate(205deg) brightness(100%) contrast(98%);
+    opacity: 1;
+    background-size: 15%;
+    --bs-btn-close-focus-shadow: none !important; 
+
+}
+.btn-close:focus {
+    outline: none;
+    box-shadow: none;
+  }
+.quantityrow{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.form-control{
+    margin-left: 10px;
+    height: 30px;
+    margin-right: 13px;  
+}
+.firstrow{
+    font-size: 200%;
+    size: 200%;
+}
+.spinnerpos{
+    display: flex;
+    justify-content: center;
+}
+.secondrow{
+    font-size: 100%;
+    size: 100%;
+}
+#firstline{
+    display: flex;
+    flex-direction: row;
+}
+#secondline{
+    display: flex;
+    flex-direction: row; 
+}
+.secondcolumn{
+    display: flex;
+    justify-content: center;
+}
+.portfolio .spinner1 .card-header{
+    cursor: pointer;
+}
+.portfolio .spinner1 .card-body{
+    padding: 0px;
+}
+
+.mat-mdc-progress-spinner .mdc-circular-progress__determinate-circle, .mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic{
+    stroke:#505CA8 !important;
+}
+.portfolio .spinner1 .show{
+    opacity:1;
+    font-size: 80%;
+    text-align: center;
+    color:black;
+    background-color: #FBF3CC;
+	border-color: #fcefad;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    font-size: 85%;
+}
+.btn-primary{
+    align-self: center;
+}
+.btn-danger{
+    align-self: center;
+    margin-left: 10px;
+}
+.modal-body{
+    padding: 10px 20px !important;
+}
+.modal-footer{  
+    padding: 10px !important;
+}
+.modal-footer .totalp{
+    position: absolute;
+    left: 0;
+    padding: 10px;
+}
+.modal-footer .totalp  p{
+    margin: 0;
+}

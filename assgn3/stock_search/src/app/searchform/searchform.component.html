@@ -1,0 +1,185 @@
+<p id="heading" class="mt-5" style="font-family: Noto Sans Regular;">STOCK SEARCH</p>
+<div class="searchform">
+<form (ngSubmit)="OnClick()" class="container mt-4 d-flex justify-content-center">
+    <div class="search-bar row col-lg-3">
+      <div class="input-group">
+      <input id="search" class="col-lg-10" matInput type="text" [placeholder]="this.g.isLoadingResult?this.g.symbol:'Enter stock ticker symbol'" [matAutocomplete]="auto" [ngModel]="searchstr" (ngModelChange)="fetchSearch($event)" value={{this.g.searchstr}}>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onselect()" >
+        <mat-option *ngIf="isLoadingResult"><mat-spinner diameter="25"></mat-spinner></mat-option>
+        <div *ngIf="!isLoadingResult">
+        <mat-option value="{{item.split('|')[0].trim()}}" *ngFor="let item of options">{{item}}</mat-option>
+        </div>
+      </mat-autocomplete>
+      <button type="submit" refresh="False" id="submit-image" class="col-sm-1 g-0">
+      <svg id="search-img"xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+      </svg>
+      </button>
+      <div class="col-sm-1 g-0 text-center  " id="close-image">
+      <svg id="close-img" (click)="Remove()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+      </svg>
+      </div>
+      </div>
+    <!-- </mat-form-field> -->
+    </div>
+</form>
+</div>
+<div class="container-xl col-lg-10">
+  <div *ngIf="!isLoadedResultapi" class="spinner mt-5">
+  <div class="d-flex justify-content-center">
+  <mat-spinner [style.color]="isLoadingResult2?'blue':'red'" *ngIf="isLoadingResult2" diameter="55"></mat-spinner>
+  </div>
+  <!-- </div> -->
+  <ngb-alert *ngIf="invalidticker" type="custom" [dismissible]="false">No data found. Please enter a valid Ticker</ngb-alert>
+  <ngb-alert *ngIf="empty" type="custom" [dismissible]="false">Please enter a valid ticker</ngb-alert>
+  </div>  
+  <div class="closealerts mt-4 mb-3">
+  @if (successMessage) {
+    <ngb-alert id="successwatchlist" #selfClosingAlert type="success" (closed)="successMessage = ''">{{ successMessage }}</ngb-alert>
+  }
+  @if (successMessage1) {
+    <ngb-alert id="successwatchlist1" #selfClosingremove type="success" (closed)="successMessage1 = ''">{{ successMessage1 }}</ngb-alert>
+  }
+  @if (successMessage2) {
+    <ngb-alert id="successwatchlist" #selfClosingbuy type="success" (closed)="successMessage2 = ''">{{ successMessage2 }}</ngb-alert>
+  }
+  @if (successMessage3) {
+    <ngb-alert id="successwatchlist1" #selfClosingsell type="success" (closed)="successMessage3 = ''">{{ successMessage3 }}</ngb-alert>
+  }
+  </div>
+  <div *ngIf="isLoadedResultapi" class="justify-content-center"> 
+    <div id="upper-part" class="container ms-1">
+      <div id="comp-details" class="col-lg-4 mt-1">
+        <div class="firstline">
+          <p id="symbol" class="firstrow fs-2" style="font-family: Open Sans semibold;">{{symbol}}  </p>
+          <svg id="starunfill" *ngIf="!watchlisted" (click)="watchlist()" class="firstrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+          <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+          </svg>
+          <svg id="starfill" class="firstrow" (click)="unwatch()" *ngIf="watchlisted" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+          </svg>
+        </div>  
+        <p id="name" class="secondrow mb-2" style="font-family: Open Sans semibold;">{{name}}</p>
+        <p id="exchange" class="thirdrow mb-1" style="font-family: Noto Sans Regular;">{{exchange}}</p>
+        <ng-template #content let-modal >
+          <div class="modal-header">
+              <p class="modal-title" id="modal-basic-title" style="font-size: 100%; opacity: 1;">{{this.symbol}}</p> 
+              <br>
+              <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+          </div>
+          <div class="modal-body py-3">
+              Current Price: {{this.curr_price}}<br>
+              Money in wallet: ${{this.g.wallet.toFixed(2)}}<BR>
+                <div class="quantityrow mt-1">
+                  <label for="quantity">Quantity: </label>
+                    <input type="number" class="form-control" value={{quantity}} name="quantity" [ngModel]="quantity" (ngModelChange)="calculatetotal($event)">
+                  </div>
+                <div *ngIf="nomoney" class="text-danger mb-3 mt-1">Not enough money in wallet!</div>
+          </div>
+          <div class="modal-footer">
+            <div class="totalp">
+            <p>Total : {{total}}</p></div>
+            <button type="button" class="btn btn-success" style="font-family: Noto Sans Regular; font-size: 100%;" [disabled]="disabled" (click)="modal.close('Save click')">Buy</button>
+          </div>
+      </ng-template>
+      <ng-template #content1 let-modal >
+        <div class="modal-header">
+            <p class="modal-title" id="modal-basic-title" style="font-size: 100%; opacity: 1;">{{this.symbol}}</p> 
+            <br>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body py-3">
+            Current Price: {{this.curr_price}}<br>
+            Money in wallet: ${{this.g.wallet.toFixed(2)}}<BR>
+              <div class="quantityrow mt-1">
+                <label for="quantity">Quantity: </label>
+                  <input type="number" class="form-control" value={{quantity}} name="quantity" [ngModel]="quantity" (ngModelChange)="calculatetotalsell($event)">
+                </div>
+              <div *ngIf="nostock" class="text-danger mb-3 mt-1">You cannot sell the stocks that you don't have!</div>
+        </div>
+        <div class="modal-footer">
+          <div class="totalp">
+          <p>Total : {{total}}</p></div>
+          <button type="button" class="btn btn-success" style="font-family: Noto Sans Regular; font-size: 100%;" [disabled]="disabled" (click)="modal.close('Save click')">Sell</button>
+        </div>
+    </ng-template>
+      <div class="buttons">
+        <button class="btn btn-success" style="font-family: Noto Sans Regular; font-size: 100%;" (click)="open(content)">Buy</button>
+        <button *ngIf="tickerbought" class="btn btn-danger ms-2" style="font-family: Noto Sans Regular; font-size: 100%;" (click)="open1(content1)">Sell</button>
+      </div>
+      </div>
+      <div class="col-lg-2 ms-3 me-3 text-center">
+      <img id="logo-image" class="img-fluid" src={{src}}>
+      </div>
+      <div class="comp-price col-lg-4 mt-1">
+        <p id="c_price" [style.color]="positive?'green':'red'" class="firstrow fs-2" style="font-family: Noto Sans semibold">{{curr_price}}</p>
+        <div class="firstline">
+          <svg class="secondrow" style="font-family: Noto Sans semibold" *ngIf="positive&&!nochange" [style.color]="positive?'green':nochange?'black':'red'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+            <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+          </svg>
+          <svg class="secondrow" style="font-family: Noto Sans semibold" *ngIf="!positive&&!nochange" [style.color]="positive?'green':nochange?'black':'red'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+          </svg>
+          <p id="change" style="font-family: Noto Sans semibold" [style.color]="positive?'green':nochange?'black':'red'" class="secondrow ms-0 mb-2">{{c}}</p>
+          <p id="change-percent" style="font-family: Noto Sans semibold; margin-left: 2px;" [style.color]="positive?'green':nochange?'black':'red'" class="secondrow mb-2">({{cp}}%)</p>
+        </div>
+        <p id="time" class="thirdrow " style="font-family: Noto Sans Regular">{{time}}</p>
+      </div>
+    </div>
+    <div class="container">
+      <p class="market mt-2" id="open" *ngIf="market" style="font-family: Noto Sans bold"><B>Market is Open</B></p>
+      <p class="market mt-2" id="closed" *ngIf="!market" style="font-family: Noto Sans bold"><B>Market Closed on {{timestamp}}</B></p>
+    </div>  
+
+    <mat-tab-group  class="container-fluid" mat-stretch-tabs animationDuration="0ms">
+      <mat-tab label="Summary">
+      <div class="summary-tab container row g-0"> 
+        <div class="container row col-lg-6"> 
+        <div class="comp-quote col-lg-6 mt-5">
+          <p style="font-family: Noto Sans Regular;"><b style="font-family: Noto Sans bold;">High Price:</b> {{h}}</p>
+          <p style="font-family: Noto Sans Regular;"><b style="font-family: Noto Sans bold;">Low Price:</b> {{l}}</p>
+          <p style="font-family: Noto Sans Regular"><b style="font-family: Noto Sans bold;">Open Price:</b> {{o}}</p>
+          <p style="font-family: Noto Sans Regular"><b style="font-family: Noto Sans bold;">Prev. Close:</b> {{pc}}</p>
+        </div>    
+        <div class="w-100"></div>
+        <div class="company-dets col-lg-12">
+          <p id="head" style="font-family: Noto Sans semibold;">About the company</p>
+          <br>
+          <p style="font-family: Noto Sans Regular;"><b style="font-family: Open Sans bold;">IPO Start Date:</b> {{d}}</p>
+          <p style="font-family: Noto Sans Regular;"><b style="font-family: Open Sans bold;">Industry:</b> {{industry}}</p>
+          <p style="font-family: Noto Sans Regular;"><b style="font-family: Noto Sans bold;">Webpage:</b> <a class="ms-1" href={{url}} target="_blank"> {{url}}</a></p>
+          <p style="font-family: Noto Sans Regular;"><b style="font-family: Open Sans bold;">Company peers:</b></p>
+          <div id="peer" style="font-family: Open Sans Regular;">
+            <span (click)="peerclick(peer1)">{{peer1}}</span>
+            <span (click)="peerclick(peer2)"> {{peer2}}</span>
+            <span (click)="peerclick(peer3)"> {{peer3}}</span>
+            <span (click)="peerclick(peer4)"> {{peer4}}</span>
+            <span (click)="peerclick(peer5)"> {{peer5}}</span>
+            <span (click)="peerclick(peer6)"> {{peer6}}</span>
+            <span (click)="peerclick(peer7)"> {{peer7}}</span>
+            <span (click)="peerclick(peer8)"> {{peer8}}</span>
+            <span (click)="peerclick(peer9)"> {{peer9}}</span>
+            <span (click)="peerclick(peer10)"> {{peer10}}</span>
+
+          </div>
+        </div>
+      </div>
+        <div class="col-lg-6 g-0">
+          <app-linechart></app-linechart>
+        </div>
+      </div>
+      </mat-tab>
+      <mat-tab label="Top News"> 
+        <app-news></app-news>
+      </mat-tab>
+      <mat-tab label="Charts">
+        <app-volumesmachart></app-volumesmachart>
+      </mat-tab>
+      <mat-tab label="Insights">
+        <app-insight></app-insight>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+

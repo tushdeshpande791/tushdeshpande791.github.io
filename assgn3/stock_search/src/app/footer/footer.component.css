@@ -1,0 +1,27 @@
+.foo div{
+    align-items:center;
+    width: 100%;
+    background-color: rgb(166, 166, 166);
+}
+.foo1{
+    position: absolute;
+    margin-top: auto;
+    min-height: 0vh;
+    bottom: 0;
+    width: 100%;
+    line-height: 40px;
+}
+.footer1{
+    background-color: rgb(166, 166, 166);
+    text-align: center;
+    bottom: 0;
+    font-weight: bold;
+    align-items: center; 
+} 
+a{
+    color: #2E7DF0;
+    text-decoration: underline;
+}
+a:hover{
+    color: #2169d4
+}

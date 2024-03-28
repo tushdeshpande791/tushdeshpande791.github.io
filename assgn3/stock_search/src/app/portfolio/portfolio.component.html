@@ -1,0 +1,108 @@
+<div class="container col-lg-8 mt-5">
+@if (successMessage2) {
+    <ngb-alert id="successwatchlist" #selfClosingbuy type="success" (closed)="successMessage2 = ''">{{ successMessage2 }}</ngb-alert>
+  }
+  @if (successMessage3) {
+    <ngb-alert id="successwatchlist1" #selfClosingsell type="success" (closed)="successMessage3 = ''">{{ successMessage3 }}</ngb-alert>
+  }
+
+</div>
+<div class="portfolio">
+    <div class="container col-lg-8 mt-5">
+    <h1 class="fs-2" style="font-family: Open Sans semibold;">My Portfolio</h1>
+    <h2 class="mb-0 fs-5" *ngIf="!isloading" style="font-family: Noto Sans semibold;" >Money in Wallet: ${{this.g.wallet.toFixed(2)}}</h2>
+    <div class="spinner1">
+    <div class="spinnerpos"><mat-spinner [style.color]="isloading?'blue':'red'" *ngIf="isloading" diameter="55"></mat-spinner></div>
+    <ngb-alert *ngIf="emptydata" type="custom" [dismissible]="false">Currently you don't have any stock.</ngb-alert>
+    <div *ngIf="!isloading">
+    <div *ngFor="let item of this.results; index as i">
+        <ng-template #content let-modal >
+            <div class="modal-header">
+                <h1 class="modal-title" id="modal-basic-title" style="font-size: 100%; opacity: 1;">{{this.results[i].ticker}}</h1> 
+                <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+            </div>
+            <div class="modal-body py-3">
+                Current Price: {{this.quoteresults[i].c.toFixed(2)}}<br>
+                Money in wallet: ${{this.g.wallet.toFixed(2)}}<BR>
+                  <div class="quantityrow mt-1">
+                    <label for="quantity">Quantity: </label>
+                      <input type="number" class="form-control" value={{quantity}} name="quantity" [ngModel]="quantity" (ngModelChange)="calculatetotal($event,i)">
+                    </div>
+                  <div *ngIf="nomoney" class="text-danger mb-3 mt-1 ">Not enough money in wallet!</div>
+            </div>
+            <div class="modal-footer">
+              <div class="totalp">
+              <p>Total : {{total}}</p></div>
+              <button type="button" class="btn btn-success" style="font-family: Noto Sans Regular; font-size: 100%;" [disabled]="disabled" (click)="modal.close('Save click')">Buy</button>
+            </div>
+        </ng-template>
+        <ng-template #content1 let-modal >
+          <div class="modal-header">
+              <p class="modal-title" id="modal-basic-title" style="font-size: 100%; opacity: 1;">{{this.results[i].ticker}}</p> 
+              <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+          </div>
+          <div class="modal-body py-3">
+              Current Price: {{this.quoteresults[i].c.toFixed(2)}}<br>
+              Money in wallet: ${{this.g.wallet.toFixed(2)}}<BR>
+                <div class="quantityrow mt-1">
+                  <label for="quantity">Quantity: </label>
+                    <input type="number" class="form-control" value={{quantity}} name="quantity" [ngModel]="quantity" (ngModelChange)="calculatetotalsell($event,i)">
+                  </div>
+                <div *ngIf="nostock" class="text-danger mb-3 mt-1">You cannot sell the stocks that you don't have!</div>
+          </div>
+          <div class="modal-footer">
+            <div class="totalp">
+            <p>Total : {{total}}</p></div>
+            <button type="button" class="btn btn-success" style="font-family: Noto Sans Regular; font-size: 100%;" [disabled]="disabled" (click)="modal.close('Save click')">Sell</button>
+          </div>
+      </ng-template>
+        <div class="card mt-3 mb-0"> 
+                <div class="card-body">     
+                <div class="card-header d-flex flex-row align-items-center" (click)="gototicker(results[i].ticker)"><p class="firstrow fs-3 mt-2 mb-1" style="font-family: Open Sans semibold;">{{results[i].ticker}} </p> <p class="secondrow fs-5 ms-2 mb-0 mt-2" style="font-family: Open Sans semibold; opacity: 0.8;"> {{results[i].company_name}}</p></div>
+                  <div class="textnews container row mb-2 mt-3">
+                    <div class="col-lg-6">
+                      <div class="input-group justify-content-between">
+                        <div class="col-lg-8" style="font-family: Noto Sans semibold;">
+                          <p class="fs-5">Quantity:</p>
+                          <p class="fs-5">Avg. Cost / Share:</p>
+                          <p class="fs-5">Total Cost:</p>
+                        </div>
+                        <div class="col-lg-3" style="font-family: Noto Sans semibold;">
+                          <p class="fs-5">{{results[i].num_of_stocks.toFixed(2)}}</p>
+                          <p class="fs-5">{{(results[i].totalcost/results[i].num_of_stocks).toFixed(2)}}</p>
+                          <p class="fs-5">{{(results[i].totalcost).toFixed(2)}}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-5" style="font-family: Noto Sans semibold;">
+                      <div class="input-group justify-content-between">
+                        <div class="col-lg-8">
+                          <p class="fs-5">Change:</p>
+                          <p class="fs-5">Current Price:</p>
+                          <p class="fs-5">Market Value:</p>
+                        </div>
+                        <div class="col-lg-3" style="font-family: Noto Sans semibold;">
+                          <div class="d-flex flex-row"><svg *ngIf="positive[i]&&!nochange[i]" [style.color]="positive[i]?'green':nochange[i]?'black':'red'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16"><path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+                          </svg><svg *ngIf="!positive[i]&&!nochange[i]" [style.color]="positive[i]?'green':nochange[i]?'black':'red'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg><p class="fs-5" [style.color]="positive[i]?'green':nochange[i]?'black':'red'">{{((quoteresults[i].c).toFixed(2)-((results[i].totalcost).toFixed(2)/results[i].num_of_stocks)).toFixed(2)}}</p></div>
+                          <p class="fs-5" [style.color]="positive[i]?'green':nochange[i]?'black':'red'">{{(quoteresults[i].c).toFixed(2)}}</p>
+                          <p class="fs-5" [style.color]="positive[i]?'green':nochange[i]?'black':'red'">{{((quoteresults[i].c).toFixed(2)*results[i].num_of_stocks).toFixed(2)}}</p>
+                        </div>
+                      </div>
+                    </div>
+                </div> 
+                <div class="card-footer mt-3">
+                  <div class="buttons">
+                    <button class="btn btn-primary" style="font-family: Noto Sans Regular; font-size: 120%;" (click)="open(content,i)">Buy</button>
+                    <button class="btn btn-danger" style="font-family: Noto Sans Regular; font-size: 120%;" (click)="open1(content1,i)">Sell</button>
+                  </div>
+                </div>
+            </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</div>
+    

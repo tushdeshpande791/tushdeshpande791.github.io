@@ -1,0 +1,25 @@
+.insights{
+    display: flex;
+    flex-direction: column;
+}
+.charts{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+#heading{
+    text-align: center;
+    font-size: 120%;
+}
+table{
+    margin-top: 10px;
+}
+.bold{
+    font-weight: bold;
+}
+tr{
+    border-bottom: 1px solid #e7e4e4;
+}
+td{
+    text-align: center;
+}

@@ -1,0 +1,86 @@
+<div id="parentContainer" class="container" *ngFor="let item of this.index; index as i; let even=even"> 
+    <ng-template #content let-modal >
+        <div class="modal-header pb-2">
+            <h1 class="modal-title mb-0 d-flex flex-column" style="font-family: Roboto Medium;" id="modal-basic-title">{{response[index[i]].source}}<br>    
+            <small class="modal-subtitle" style="font-family: Roboto Medium;">{{humandate(response[index[i]].datetime)}}</small></h1>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <p class="headlines" style="font-family: Roboto Regular;">{{response[index[i]].headline}}</p>
+            <div *ngIf="response[index[i]].summary.length<=140">{{response[index[i]].summary}}</div><div *ngIf="!(response[index[i]].summary.length<=140)">{{response[index[i]].summary.slice(0,139)}}[...]</div>
+            <div class="lower-body">
+            <p>For more details click </p><a style="text-decoration: underline;" href="{{response[index[i]].url}}" target="_blank">here</a></div>
+            <br>
+            <br>
+            <div class="card"> 
+                    <div class="card-body"> 
+                        <div class="card-title mb-0">Share</div>
+                      <div class="textnews">
+                        <p class="card-text" style="opacity: 1;"> 
+                        <br>
+                        <a class="twitter-share-button" target="_blank"
+                        href="https://twitter.com/intent/tweet?text={{encodeurl(response[index[i]].headline)}} {{response[index[i]].url}}"><svg class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></a>
+                        <a class="fb-share-button" target="_blank" data-href="{{response[index[i]].url}}"
+                        href="https://www.facebook.com/sharer/sharer.php?u={{response[index[i]].url}}"><svg class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#0b0be2" d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64h98.2V334.2H109.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H255V480H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"/></svg></a>
+                        </p> 
+                      </div>
+                    </div> 
+            </div>
+        </div>
+    </ng-template>
+    <ng-template #content1 let-modal>
+        <div class="modal-header pb-2">
+            <h1 class="modal-title mb-0 d-flex flex-column" style="font-family: Roboto Medium;" id="modal-basic-title">{{response[index[i+1]].source}}
+                <small class="modal-subtitle" style="font-family: Roboto Medium;">{{humandate(response[index[i+1]].datetime)}}</small></h1>
+            <button type="button" class="btn-close btn-close-blue" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body" >
+            <p class="headlines" style="font-family: Roboto Regular;">{{response[index[i+1]].headline}}</p>
+            <div *ngIf="response[index[i+1]].summary.length<=140">{{response[index[i+1]].summary}}</div><div *ngIf="!(response[index[i+1]].summary.length<=140)">{{response[index[i+1]].summary.slice(0,139)}}[...]</div>
+            <div class="lower-body">
+            <p>For more details click </p><a style="text-decoration: underline;" href="{{response[index[i+1]].url}}" target="_blank">here</a></div>
+            <br>
+            <br>
+            <div class="card"> 
+                    <div class="card-body">  
+                        <div class="card-title mb-0">Share</div>
+                      <div class="textnews">
+                        <p class="card-text" style="opacity: 1;"> 
+                        <br>
+                        <a class="twitter-share-button" target="_blank"
+                        href="https://twitter.com/intent/tweet?text={{encodeurl(response[index[i+1]].headline)}} {{response[index[i+1]].url}}"><svg class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></a>
+                        <a class="fb-share-button" target="_blank" data-href="{{response[index[i+1]].url}}"
+                        href="https://www.facebook.com/sharer/sharer.php?u={{response[index[i+1]].url}}"><svg class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#0b0be2" d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64h98.2V334.2H109.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H255V480H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"/></svg></a>
+                        </p> 
+                      </div>
+                    </div> 
+                </div>
+        </div>
+        
+    </ng-template>
+    <div class="row" *ngIf="even"> 
+        <div class="col-lg-6 mt-4 d-flex"> 
+            <div class="card" (click)="this.open(content)">
+                <div class="card-body row"> 
+                    <div class="col-md-3">
+                    <img class="card-img-left img-fluid rounded" src= {{response[index[i]].image}} alt="">
+                    </div>  
+                  <div class="textnews col-md-9 d-flex justify-content-center align-items-center">
+                    <p class="card-text" style="font-family: Open Sans Regular;" *ngIf="response[index[i]].headline.length<=100">{{response[index[i]].headline}}</p><p class="card-text" *ngIf="!(response[index[i]].headline.length<=100)">{{response[index[i]].headline.slice(0,99)}}[...]</p>
+                  </div>
+                </div> 
+            </div>
+        </div> 
+        <div class="col-lg-6 mt-4 d-flex" *ngIf="i+1<this.index.length"> 
+            <div class="card" (click)="this.open(content1)"> 
+                <div class="card-body row"> 
+                    <div class="col-md-3">
+                        <img class="card-img-left img-fluid rounded" src= {{response[index[i+1]].image}} alt="">
+                    </div>
+                <div class="textnews col-md-9 d-flex justify-content-center align-items-center">
+                <p class="card-text" style="font-family: Open Sans Regular;" *ngIf="response[index[i+1]].headline.length<=100">{{response[index[i+1]].headline}}</p><p class="card-text" *ngIf="!(response[index[i+1]].headline.length<=100)">{{response[index[i+1]].headline.slice(0,99)}}[...]</p>
+                </div>
+                </div> 
+            </div> 
+        </div>  
+    </div>     

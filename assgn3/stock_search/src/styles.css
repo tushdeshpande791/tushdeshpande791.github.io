@@ -1,0 +1,76 @@
+@font-face {
+    font-family: "Open Sans Regular";
+    src: url("fonts/OpenSans-Regular.ttf") format('truetype');
+}
+@font-face {
+    font-family: "Open Sans Light";
+    src: url("fonts/OpenSans-Light.ttf") format('truetype');
+}
+@font-face {
+    font-family: "Open Sans semibold";
+    src: url("fonts/OpenSans-SemiBold.ttf") format('truetype');
+}
+@font-face {
+    font-family: "Noto Sans Medium";
+    src: url("fonts/NotoSans-Medium.ttf") format('truetype');
+}
+@font-face {
+    font-family: "Noto Sans Regular";
+    src: url("fonts/NotoSans-Regular.ttf") format('truetype');
+}
+@font-face {
+    font-family: "Noto Sans bold";
+    src: url("fonts/NotoSans-Bold.ttf") format('truetype');
+}
+@font-face {
+    font-family: "Noto Sans Black";
+    src: url("fonts/NotoSans-Black.ttf") format('truetype');
+}
+@font-face {
+    font-family: "Noto Sans semibold";
+    src: url("fonts/NotoSans-SemiBold.ttf") format('truetype');
+}
+@font-face {
+    font-family: "Open Sans Medium";
+    src: url("fonts/OpenSans-Medium.ttf") format('truetype');
+}
+@font-face {
+    font-family: "Open Sans Bold";
+    src: url("fonts/OpenSans-Bold.ttf") format('truetype');
+}
+@font-face {
+    font-family: "Roboto Bold";
+    src: url("fonts/Roboto-Bold.ttf") format('truetype');
+}
+@font-face {
+    font-family: "Roboto Medium";
+    src: url("fonts/Roboto-Medium.ttf") format('truetype');
+}
+@font-face {
+    font-family: "Roboto Regular";
+    src: url("fonts/Roboto-Regular.ttf") format('truetype');
+}
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0; 
+    font-family: "Noto Sans Black", "Helvetica Neue", sans-serif; 
+    padding-bottom: 80px;
+}
+
+.foo {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+}   
+.footer{
+    background-color: #DCDCDC;
+    text-align: center;
+    font-weight: bold;
+    align-items: center; 
+}

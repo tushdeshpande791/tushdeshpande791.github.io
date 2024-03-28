@@ -1,0 +1,44 @@
+.watchlist .spinner1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.firstrow{
+    font-size: 200%;
+    size: 200%;
+}
+.spinnerpos{
+    display: flex;
+    justify-content: center;
+}
+.secondrow{
+    font-size: 115%;
+    size: 115%;
+    display: flex;
+    flex-direction: row;
+}
+.watchlist .spinner1 .card{
+    cursor: pointer;
+    height: 115px;
+}
+.watchlist .spinner1 .card-body{
+    padding: 0px;
+}
+.watchlist .spinner1 .card-title .btn-close{
+    background-size: 5px;
+    color: #868686;
+    font-weight: bold;
+    padding: 7px; 
+    border-radius: 0.5rem;      
+}
+.mat-mdc-progress-spinner .mdc-circular-progress__determinate-circle, .mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic{
+    stroke:#505CA8 !important;
+}
+.watchlist .spinner1 .show{
+    opacity:1;
+    font-size: 80%;
+    text-align: center;
+    color:black;
+    background-color: #FBF3CC;
+	border-color: #fcefad;
+}
