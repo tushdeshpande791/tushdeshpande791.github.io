@@ -80,7 +80,7 @@ app.get("/update-portbuy/:ticker/:compname/:num_of_stocks/:totalcost",(req,res)=
   const totalcost=Number(req.params.totalcost)
   Port.updateOne(
     {ticker:`${ticker}`},
-    {ticker:`${ticker}`,company_name:`${compname}`,$inc:{num_of_stocks:`${num_of_stocks}`,totalcost:`${totalcost}`}},
+    {ticker:`${ticker}`,company_name:`${compname}`,$inc:{num_of_stocks:`${num_of_stocks}`,totalcost:`${(totalcost).toFixed(2)}`}},
     {upsert:true}
     )
     .then((response)=>{
@@ -97,7 +97,7 @@ app.get("/update-portsell/:ticker/:compname/:num_of_stocks/:totalcost",(req,res)
   const totalcost=Number(req.params.totalcost)
   Port.updateOne(
     {ticker:`${ticker}`},
-    {ticker:`${ticker}`,company_name:`${compname}`,$inc:{num_of_stocks:`${-num_of_stocks}`,totalcost:`${-totalcost}`}},
+    {ticker:`${ticker}`,company_name:`${compname}`,$inc:{num_of_stocks:`${-num_of_stocks}`,totalcost:`${(-totalcost).toFixed(2)}`}},
     {upsert:true}
     )
     .then((response)=>{
@@ -156,11 +156,9 @@ app.get("/get-watchlist",(req,res)=>{
   nochange=[]
   Watch.find()
   .then(async (result)=>{
-    // res.send(result)
     for(let i=0;i<result.length;i++)  {
       const response=await axios.get(`https://finnhub.io/api/v1/quote?symbol=${result[i].ticker}&token=cmu2hnpr01qsv99lvjdgcmu2hnpr01qsv99lvje0`)
       responsequote.push(response.data)
-      // console.log(response.data)
       if(response.data.d<0){
         positive.push(false)
         nochange.push(false)
@@ -195,10 +193,8 @@ app.get("/remove-watchlist/:ticker",(req,res)=>{
 app.get('/details/:ticker', async (req,res)=>{
   const ticker=req.params.ticker;
   const response1= await axios.get(`https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=cmu2hnpr01qsv99lvjdgcmu2hnpr01qsv99lvje0`)
-  // console.log(response1.data)
   if ('ticker' in response1.data){
     const response2= await axios.get(`https://finnhub.io/api/v1/quote?symbol=${ticker}&token=cmu2hnpr01qsv99lvjdgcmu2hnpr01qsv99lvje0`)
-  // const response3= await axios.get(`https://finnhub.io/api/v1/company-news?symbol=%3cTICKER%3e&from=%3cDATE%3e&to=%3cDATE%3e&token=%3cAPI_KEY`)
     const response3= await axios.get(`https://finnhub.io/api/v1/stock/peers?symbol=${ticker}&token=cmu2hnpr01qsv99lvjdgcmu2hnpr01qsv99lvje0`)
     res.send([response1.data,response2.data,response3.data])
   }

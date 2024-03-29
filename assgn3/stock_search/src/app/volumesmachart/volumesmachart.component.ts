@@ -170,7 +170,7 @@ constructor(public s:SearchformComponent, public g:GlobalService,private http:Ht
 
   series: [{
       type: 'candlestick',
-      name: 'AAPL',
+      name: `${this.s.symbol}`,
       id: 'aapl',
       zIndex: 2,
       data: this.data1[0]
