@@ -166,7 +166,7 @@ export class PortfolioComponent implements AfterViewInit{
     calculatetotalsell(quantity:number,i:number){
         this.disabled=false
         this.nostock=false
-        if(quantity!=null && quantity!=0){
+        if(quantity!=null && quantity>0){
         this.total=(this.quoteresults[i].c*quantity).toFixed(2)
         this.quantity=quantity
         if(quantity>this.results[i].num_of_stocks){
@@ -183,7 +183,7 @@ export class PortfolioComponent implements AfterViewInit{
     calculatetotal(quantity:number,i:number){
         this.disabled=false
         this.nomoney=false
-        if(quantity!=null && quantity!=0){
+        if(quantity!=null && quantity>0){
         this.total=(this.quoteresults[i].c*quantity).toFixed(2)
         this.quantity=quantity
         if(this.quoteresults[i].c*quantity>this.g.wallet){
