@@ -59,4 +59,6 @@ export class GlobalService {
   public inputval:string=""
   public searchstr:string=""
   public chart_data:number[][]=[]
+  public results:any
+  public quoteresults:any
 }

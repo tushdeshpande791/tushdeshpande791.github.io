@@ -12,17 +12,17 @@
     <h1 class="fs-2" style="font-family: Open Sans semibold;">My Portfolio</h1>
     <h2 class="mb-0 fs-5" *ngIf="!isloading" style="font-family: Noto Sans semibold;" >Money in Wallet: ${{this.g.wallet.toFixed(2)}}</h2>
     <div class="spinner1">
-    <div class="spinnerpos"><mat-spinner [style.color]="isloading?'blue':'red'" *ngIf="isloading" diameter="55"></mat-spinner></div>
+    <div class="spinnerpos"><mat-spinner *ngIf="isloading" diameter="55"></mat-spinner></div>
     <ngb-alert *ngIf="emptydata" type="custom" [dismissible]="false">Currently you don't have any stock.</ngb-alert>
-    <div *ngIf="!isloading">
+    <div *ngIf="!isloading && this.quoteresults?.length!=0">
     <div *ngFor="let item of this.results; index as i">
-        <ng-template #content let-modal >
+        <ng-template #content let-modal>
             <div class="modal-header">
-                <h1 class="modal-title" id="modal-basic-title" style="font-size: 100%; opacity: 1;">{{this.results[i].ticker}}</h1> 
+                <h1 class="modal-title" id="modal-basic-title" style="font-size: 100%; opacity: 1;">{{this.results[i]?.ticker}}</h1> 
                 <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
             </div>
             <div class="modal-body py-3">
-                Current Price: {{this.quoteresults[i].c.toFixed(2)}}<br>
+                Current Price: {{this.quoteresults[i]?.c.toFixed(2)}}<br>
                 Money in wallet: ${{this.g.wallet.toFixed(2)}}<BR>
                   <div class="quantityrow mt-1">
                     <label for="quantity">Quantity: </label>
@@ -38,11 +38,11 @@
         </ng-template>
         <ng-template #content1 let-modal >
           <div class="modal-header">
-              <p class="modal-title" id="modal-basic-title" style="font-size: 100%; opacity: 1;">{{this.results[i].ticker}}</p> 
+              <p class="modal-title" id="modal-basic-title" style="font-size: 100%; opacity: 1;">{{this.results[i]?.ticker}}</p> 
               <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
           </div>
           <div class="modal-body py-3">
-              Current Price: {{this.quoteresults[i].c.toFixed(2)}}<br>
+              Current Price: {{this.quoteresults[i]?.c.toFixed(2)}}<br>
               Money in wallet: ${{this.g.wallet.toFixed(2)}}<BR>
                 <div class="quantityrow mt-1">
                   <label for="quantity">Quantity: </label>
@@ -58,7 +58,7 @@
       </ng-template>
         <div class="card mt-3 mb-0"> 
                 <div class="card-body">     
-                <div class="card-header d-flex flex-row align-items-center" (click)="gototicker(results[i].ticker)"><p class="firstrow fs-3 mt-2 mb-1" style="font-family: Open Sans semibold;">{{results[i].ticker}} </p> <p class="secondrow fs-5 ms-2 mb-0 mt-2" style="font-family: Open Sans semibold; opacity: 0.8;"> {{results[i].company_name}}</p></div>
+                <div class="card-header d-flex flex-row align-items-center" (click)="gototicker(results[i]?.ticker)"><p class="firstrow fs-3 mt-2 mb-1" style="font-family: Open Sans semibold;">{{results[i]?.ticker}} </p> <p class="secondrow fs-5 ms-2 mb-0 mt-2" style="font-family: Open Sans semibold; opacity: 0.8;"> {{results[i]?.company_name}}</p></div>
                   <div class="textnews container row mb-2 mt-3">
                     <div class="col-lg-6">
                       <div class="input-group justify-content-between">
@@ -68,9 +68,9 @@
                           <p class="fs-5">Total Cost:</p>
                         </div>
                         <div class="col-lg-3" style="font-family: Noto Sans semibold;">
-                          <p class="fs-5">{{results[i].num_of_stocks.toFixed(2)}}</p>
-                          <p class="fs-5">{{(results[i].totalcost/results[i].num_of_stocks).toFixed(2)}}</p>
-                          <p class="fs-5">{{(results[i].totalcost).toFixed(2)}}</p>
+                          <p class="fs-5">{{results[i]?.num_of_stocks.toFixed(2)}}</p>
+                          <p class="fs-5">{{(results[i]?.totalcost/results[i].num_of_stocks).toFixed(2)}}</p>
+                          <p class="fs-5">{{(results[i]?.totalcost).toFixed(2)}}</p>
                         </div>
                       </div>
                     </div>
@@ -85,9 +85,9 @@
                           <div class="d-flex flex-row"><svg *ngIf="positive[i]&&!nochange[i]" [style.color]="positive[i]?'green':nochange[i]?'black':'red'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16"><path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
                           </svg><svg *ngIf="!positive[i]&&!nochange[i]" [style.color]="positive[i]?'green':nochange[i]?'black':'red'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                               <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-                            </svg><p class="fs-5" [style.color]="positive[i]?'green':nochange[i]?'black':'red'">{{((quoteresults[i].c).toFixed(2)-((results[i].totalcost).toFixed(2)/results[i].num_of_stocks)).toFixed(2)}}</p></div>
-                          <p class="fs-5" [style.color]="positive[i]?'green':nochange[i]?'black':'red'">{{(quoteresults[i].c).toFixed(2)}}</p>
-                          <p class="fs-5" [style.color]="positive[i]?'green':nochange[i]?'black':'red'">{{((quoteresults[i].c).toFixed(2)*results[i].num_of_stocks).toFixed(2)}}</p>
+                            </svg><p class="fs-5" [style.color]="positive[i]?'green':nochange[i]?'black':'red'">{{((quoteresults[i]?.c).toFixed(2)-((results[i]?.totalcost).toFixed(2)/results[i]?.num_of_stocks)).toFixed(2)}}</p></div>
+                          <p class="fs-5" [style.color]="positive[i]?'green':nochange[i]?'black':'red'">{{(quoteresults[i]?.c).toFixed(2)}}</p>
+                          <p class="fs-5" [style.color]="positive[i]?'green':nochange[i]?'black':'red'">{{((quoteresults[i]?.c).toFixed(2)*results[i]?.num_of_stocks).toFixed(2)}}</p>
                         </div>
                       </div>
                     </div>

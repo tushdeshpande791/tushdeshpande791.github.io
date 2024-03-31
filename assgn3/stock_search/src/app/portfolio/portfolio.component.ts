@@ -20,7 +20,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     imports: [NavbarComponent,NgbAlertModule,MatProgressSpinnerModule,CommonModule,HttpClientModule,FormsModule],
     encapsulation:ViewEncapsulation.None
 })
-export class PortfolioComponent implements AfterViewInit{
+export class PortfolioComponent implements AfterViewInit,OnInit{
   private _message2$ = new Subject<string>();
 	private _message3$ = new Subject<string>();
     successMessage2 = '';
@@ -47,9 +47,14 @@ export class PortfolioComponent implements AfterViewInit{
 			)
 			.subscribe(() => this.selfClosingsell?.close());
     }
-    ngAfterViewInit(): void {
-      this.fetchwallet()
+  ngAfterViewInit(): void {
+    // throw new Error('Method not implemented.');
+  }
+    ngOnInit(): void {
+      // this.fetchwallet()
       this.fetchport()
+      this.fetchwallet()
+
     }
     private modalService = inject(NgbModal);
 	closeResult = '';
@@ -62,7 +67,7 @@ export class PortfolioComponent implements AfterViewInit{
         this._message2$.next(`${this.results[i].ticker} bought successfully.`);
         this.disabled=true
         this.total='0.00'
-        this.r.navigateByUrl(`/portfolio`)
+        // this.r.navigateByUrl(`/portfolio`)
 	    },
 		(reason) => {
 		this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -80,7 +85,7 @@ export class PortfolioComponent implements AfterViewInit{
         this.updateportsell(i)
         this.walletsell(Number(this.total))
         this._message3$.next(`${this.results[i].ticker} sold successfully.`);
-        this.cdr.detectChanges()
+        // this.cdr.detectChanges()
         this.disabled=true
         this.total='0.00'
         },
@@ -122,21 +127,28 @@ export class PortfolioComponent implements AfterViewInit{
     isloading:boolean=true
     emptydata:boolean=false
     results:any
+    isloadedresult:boolean=false
     quoteresults:any
     fetchport(){
+    this.isloadedresult=false
     this.quoteresults=[]
     this.positive=[]
     this.callapiportget()
         .subscribe(response=>{
-        if(response[0].length==0){ 
+        if(response[0]?.length==0){ 
             this.emptydata=true
+            this.isloadedresult=false
         }
-        this.isloading=false
+        else{
+        // this.isloading=false
         this.results=response[0]
         this.quoteresults=response[1]
         this.positive=response[2]
         this.nochange=response[3]
-        this.cdr.detectChanges()
+        this.isloadedresult=true
+        }
+        this.isloading=false
+        // this.cdr.detectChanges()
         })
     }
       gototicker(ticker:string) {
@@ -173,7 +185,7 @@ export class PortfolioComponent implements AfterViewInit{
           this.disabled=true
           this.nostock=true
         }
-        this.cdr.detectChanges()
+        // this.cdr.detectChanges()
         }
         else{
         this.disabled=true
@@ -190,7 +202,7 @@ export class PortfolioComponent implements AfterViewInit{
           this.disabled=true
           this.nomoney=true
         }
-        this.cdr.detectChanges()
+        // this.cdr.detectChanges()
         }
         else{
         this.disabled=true
@@ -204,21 +216,21 @@ export class PortfolioComponent implements AfterViewInit{
       this.callapiwalletfetch()
           .subscribe(response=>{
             this.g.wallet=response[0].amount
-            this.cdr.detectChanges()
+            // this.cdr.detectChanges()
           })
     }
     walletbuy(amount:number){
       this.callapiwalletbuy(amount)
           .subscribe(response=>{
             this.fetchwallet()
-            this.cdr.detectChanges()
+            // this.cdr.detectChanges()
           })
     }
     walletsell(amount:number){
       this.callapiwalletsell(amount)
           .subscribe(response=>{
             this.fetchwallet()
-            this.cdr.detectChanges()
+            // this.cdr.detectChanges()
           })
     }
     updateportbuy(i:number){
@@ -226,7 +238,7 @@ export class PortfolioComponent implements AfterViewInit{
           .subscribe(response=>{
             this.fetchport()
             this.quantity=0
-            this.cdr.detectChanges()
+            // this.cdr.detectChanges()
           })
       }
     callapiportremove(ticker:string): Observable<any> {
@@ -236,13 +248,15 @@ export class PortfolioComponent implements AfterViewInit{
         this.callapiportremove(ticker)
           .subscribe(response=>{
             this.fetchport()
-            this.cdr.detectChanges()
+            // this.cdr.detectChanges()
           })
       }
     callapisell(ticker:string,name:string,num_stock:number,totalcost:string): Observable<any> {
         return this.http.get<any>(`update-portsell/${ticker}/${name}/${num_stock}/${totalcost}`)
       }
     updateportsell(i:number){
+      // this.isloading=true
+      // this.isloadedresult=false
         this.callapisell(this.results[i].ticker,this.results[i].company_name,this.quantity,((this.results[i].totalcost/this.results[i].num_of_stocks)*this.quantity).toFixed(2))
           .subscribe(response=>{
             if(this.results[i].num_of_stocks==this.quantity){
@@ -264,12 +278,12 @@ export class PortfolioComponent implements AfterViewInit{
               if(response[i].ticker==ticker){
                 this.tickerbought=true
                 this.g.tickerbought=true
-                this.cdr.detectChanges()
+                // this.cdr.detectChanges()
                 break
               }
             this.tickerbought=false
             this.g.tickerbought=false
-            this.cdr.detectChanges()
+            // this.cdr.detectChanges()
             }
           })
       }
