@@ -156,7 +156,7 @@ app.get("/get-watchlist",(req,res)=>{
   nochange=[]
   Watch.find()
   .then(async (result)=>{
-    for(let i=0;i<result.length;i++)  {
+    for(let i=0;i<result.length;i++){
       const response=await axios.get(`https://finnhub.io/api/v1/quote?symbol=${result[i].ticker}&token=cmu2hnpr01qsv99lvjdgcmu2hnpr01qsv99lvje0`)
       responsequote.push(response.data)
       if(response.data.d<0){
@@ -181,6 +181,7 @@ app.get("/get-watchlist",(req,res)=>{
   });
 })
 app.get("/remove-watchlist/:ticker",(req,res)=>{
+  
   const ticker=req.params.ticker
   Watch.deleteOne({ticker:`${ticker}`})
     .then((response)=>{
@@ -191,6 +192,8 @@ app.get("/remove-watchlist/:ticker",(req,res)=>{
     });
 })
 app.get('/details/:ticker', async (req,res)=>{
+  res.set('Access-Control-Allow-Origin', '*');
+
   const ticker=req.params.ticker;
   const response1= await axios.get(`https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=cmu2hnpr01qsv99lvjdgcmu2hnpr01qsv99lvje0`)
   if ('ticker' in response1.data){
@@ -203,16 +206,19 @@ app.get('/details/:ticker', async (req,res)=>{
   }
 })
 app.get('/quote/:ticker',async (req,res)=>{
+  res.set('Access-Control-Allow-Origin', '*');
   const ticker=req.params.ticker;
   const response=await axios.get(`https://finnhub.io/api/v1/quote?symbol=${ticker}&token=cmu2hnpr01qsv99lvjdgcmu2hnpr01qsv99lvje0`)
   res.send(response.data)
 })
 app.get('/:ticker', async (req,res)=>{
+  res.set('Access-Control-Allow-Origin', '*');
   const ticker=req.params.ticker;
   const response= await axios.get(`https://finnhub.io/api/v1/search?q=${ticker}&token=cmu2hnpr01qsv99lvjdgcmu2hnpr01qsv99lvje0`)
   res.send(response.data)
 })
 app.get('/news/:ticker/:from/:to', async (req,res)=>{
+  res.set('Access-Control-Allow-Origin', '*');
   const ticker=req.params.ticker;
   const from=req.params.from
   const to=req.params.to  
@@ -220,7 +226,9 @@ app.get('/news/:ticker/:from/:to', async (req,res)=>{
   res.send(response.data)
 })
 app.get('/polygon/:frame/:ticker/:from/:to', async (req,res)=>{
+  
   const ticker=req.params.ticker;
+  res.set('Access-Control-Allow-Origin', '*');
   const from=req.params.from
   const to=req.params.to
   const frame=req.params.frame
@@ -229,6 +237,8 @@ app.get('/polygon/:frame/:ticker/:from/:to', async (req,res)=>{
   res.send(response.data)
 })
 app.get('/polygon/:ticker', async (req,res)=>{
+  res.set('Access-Control-Allow-Origin', '*');
+
   const ticker=req.params.ticker;
   const response1= await axios.get(`https://finnhub.io/api/v1/stock/insider-sentiment?symbol=${ticker}&from=2022-01-01&token=cmu2hnpr01qsv99lvjdgcmu2hnpr01qsv99lvje0`)
   const response2= await axios.get(`https://finnhub.io/api/v1/stock/recommendation?symbol=${ticker}&token=cmu2hnpr01qsv99lvjdgcmu2hnpr01qsv99lvje0`)
